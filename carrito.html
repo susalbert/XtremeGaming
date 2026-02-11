@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - XtremeGaming</title>
+    <link rel="icon" href="media/icono.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{ box-sizing: border-box; }
+        html{ scroll-behavior: smooth; }
+        body{ font-family: 'Fredoka', sans-serif; margin: 0; }
+        h1{ font-size: 3.5em; } h2{ font-size: 2.7em; } h3{ font-size: 2em; } p{ font-size: 1.25em; }
+        button{
+            font-size: 1em; font-weight: bold; padding: 10px 20px; border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.5); box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            color: white; background-color: orangered; cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+        }
+        button:hover{ background-color: rgba(255, 72, 0, 0.8); }
+        .container{ max-width: 1400px; margin: auto; }
+        .color-acento{ color:orangered; }
+
+        header{ background-color: rgb(245,245,245); }
+        header .logo{ margin: 0; padding: 25px 30px; font-weight: bold; color: orangered; font-size: 1.6em; font-family: 'Fredoka', sans-serif; }
+        header .container{ display: flex; flex-direction: column; align-items: center; }
+        header nav{ display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; }
+        header a{ padding: 5px 12px; text-decoration: none; font-weight: bold; color: black; font-family: 'Fredoka', sans-serif; }
+        header a:hover{ color: orangered; }
+
+        #carrito-hero{
+            display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column;
+            height: 40vh; background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+            url(media/room-with-lot-games-video-game-wall_875765-5370.jpg);
+            background-repeat: no-repeat; background-size: cover; background-position: center center;
+        }
+        #carrito-hero h1{ color: white; margin-bottom: 20px; font-family: 'Fredoka', sans-serif; }
+        #carrito-hero p{ font-family: 'Fredoka', sans-serif; }
+
+        #carrito-contenido{ padding: 100px 12px; background-color: white; }
+        #carrito-contenido h2{ text-align: center; margin-bottom: 50px; color: #333; font-family: 'Fredoka', sans-serif; }
+
+        .carrito-item{
+            display: flex; align-items: center; background-color: white; padding: 20px; 
+            margin-bottom: 15px; border-radius: 10px; border-left: 4px solid orangered;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .item-imagen{ width: 100px; height: 100px; border-radius: 8px; object-fit: cover; margin-right: 20px; }
+        .item-info{ flex: 1; }
+        .item-info h3{ margin: 0 0 5px 0; font-family: 'Fredoka', sans-serif; }
+        .item-detalles{ color: #666; margin: 5px 0; font-family: 'Fredoka', sans-serif; }
+        .item-precio{ color: orangered; font-weight: bold; font-size: 1.2em; font-family: 'Fredoka', sans-serif; }
+        .cantidad-control{ display: flex; align-items: center; gap: 10px; margin-right: 20px; }
+        .cantidad-btn{ width: 30px; height: 30px; border-radius: 50%; background-color: #ddd; border: none; font-weight: bold; cursor: pointer; font-family: 'Fredoka', sans-serif; }
+        .eliminar-btn{ background-color: #ff3333; padding: 8px 15px; font-size: 0.9em; font-family: 'Fredoka', sans-serif; }
+
+        .resumen{ background-color: #f5f5f5; padding: 25px; border-radius: 10px; margin-top: 30px; }
+        .resumen-linea{ display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd; font-family: 'Fredoka', sans-serif; }
+        .resumen-linea:last-child{ border-bottom: none; font-weight: bold; font-size: 1.2em; color: orangered; }
+
+        .cupon-section { background: #f9f9f9; padding: 15px; border-radius: 10px; margin: 20px 0; }
+        .cupon-section h3 { font-family: 'Fredoka', sans-serif; }
+        .cupon-input { display: flex; gap: 10px; }
+        .cupon-input input { 
+            flex: 1; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            font-family: 'Fredoka', sans-serif;
+        }
+        .cupon-input input::placeholder {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .cupon-btn { background-color: #28a745; font-family: 'Fredoka', sans-serif; }
+        .cupon-mensaje { margin-top: 10px; font-size: 0.9em; font-family: 'Fredoka', sans-serif; }
+
+        footer{ background-color: rgb(230,230,230); }
+        footer p{ margin: 0; padding: 12px; color: rgb(100,100,100); font-family: 'Fredoka', sans-serif; }
+        footer .container{ height: 150px; justify-content: center; display: flex; align-items: flex-end; }
+
+        @media (min-width: 720px){
+            header{ position: fixed; width: 100%; }
+            header .container{ flex-direction: row; justify-content: space-between; }
+            header nav{ flex-direction: row; padding-bottom: 0; padding-right: 20px; }
+            #carrito-hero h1{ font-size: 4em; }
+        }
+        @media (max-width: 768px){
+            .carrito-item{ flex-wrap: wrap; }
+            .item-imagen{ width: 80px; height: 80px; margin-right: 15px; }
+        }
+        
+        body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label, li, ul, ol, div {
+            font-family: 'Fredoka', sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <p class="logo">XtremeGaming</p>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="index.html#VideojuegosMas">Videojuegos</a>
+            <a href="tarjetas.html">Tarjetas Regalo</a>
+            <a href="dispositivos.html">Dispositivos</a>
+            <a href="index.html#caracteristicas">Sobre Nosotros</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="ajustes.html">Ajustes</a>
+            <a href="carrito.html" style="color: orangered;">Carrito</a>
+            <a href="sugerencias.html">Sugerencias</a>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<section id="carrito-hero">
+    <h1>Mi Carrito</h1>
+    <p style="color: white; font-size: 1.5em;">Revisa y completa tu compra</p>
+</section>
+
+<section id="carrito-contenido">
+    <div class="container">
+        <h2>Productos en el Carrito</h2>
+        
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div class="carrito-item" data-precio="59.99">
+                <img src="media/cappydesktop.png" class="item-imagen">
+                <div class="item-info">
+                    <h3>Super Mario Odyssey</h3>
+                    <p class="item-detalles">Platformer 3D - Nintendo Switch</p>
+                    <p class="item-precio">$<span class="precio-total-item">59.99</span></p>
+                </div>
+                <div class="cantidad-control">
+                    <button class="cantidad-btn menos">-</button>
+                    <span style="font-weight:bold" class="cantidad">1</span>
+                    <button class="cantidad-btn mas">+</button>
+                </div>
+                <button class="eliminar-btn">Eliminar</button>
+            </div>
+            
+            <div class="carrito-item" data-precio="59.99">
+                <img src="media/battledesktop.png" class="item-imagen">
+                <div class="item-info">
+                    <h3>Battlefield 6</h3>
+                    <p class="item-detalles">FPS - PC</p>
+                    <p class="item-precio">$<span class="precio-total-item">59.99</span></p>
+                </div>
+                <div class="cantidad-control">
+                    <button class="cantidad-btn menos">-</button>
+                    <span style="font-weight:bold" class="cantidad">1</span>
+                    <button class="cantidad-btn mas">+</button>
+                </div>
+                <button class="eliminar-btn">Eliminar</button>
+            </div>
+            
+            <div class="cupon-section">
+                <h3>Código de descuento [Limitado a 1 por compra]</h3>
+                <div class="cupon-input">
+                    <input type="text" id="cupon" placeholder="Ingresa código">
+                    <button id="aplicar-cupon" class="cupon-btn">Aplicar</button>
+                </div>
+                <div id="cupon-mensaje" class="cupon-mensaje"></div>
+                </p>
+            </div>
+            
+            <div class="resumen">
+                <div class="resumen-linea">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$119.98</span>
+                </div>
+                <div class="resumen-linea" id="linea-descuento" style="display:none;">
+                    <span>Descuento:</span>
+                    <span id="descuento">-$0.00</span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Impuestos (10%):</span>
+                    <span id="impuestos">$12.00</span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Enví­o:</span>
+                    <span>$0.00</span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Total:</span>
+                    <span id="total">$131.98</span>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                <button onclick="location.href='index.html#VideojuegosMas'">Seguir Comprando</button>
+                <button onclick="location.href='pago.html'" style="font-size: 1.2em; padding: 15px 40px;">Proceder al Pago</button>             
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; XtremeGaming 2026 - Carrito de Compras</p>
+    </div>
+</footer>
+
+<script>
+    let cuponUsado = false;
+    let descuentoPorcentaje = 0;
+    
+    const codigosValidos = ["PRUEBA1", "PRUEBA2", "PRUEBA3"];
+    
+    function actualizarPrecioItem(item) {
+        const precioUnitario = parseFloat(item.getAttribute('data-precio'));
+        const cantidad = parseInt(item.querySelector('.cantidad').textContent);
+        const precioTotalItem = precioUnitario * cantidad;
+        
+        item.querySelector('.precio-total-item').textContent = precioTotalItem.toFixed(2);
+    }
+    
+    function calcularTotal() {
+        let subtotal = 0;
+        
+        document.querySelectorAll('.carrito-item').forEach(item => {
+            const precioUnitario = parseFloat(item.getAttribute('data-precio'));
+            const cantidad = parseInt(item.querySelector('.cantidad').textContent);
+            const precioItem = precioUnitario * cantidad;
+            subtotal += precioItem;
+            
+            actualizarPrecioItem(item);
+        });
+        
+        let descuentoMonto = 0;
+        if (descuentoPorcentaje > 0) {
+            descuentoMonto = subtotal * (descuentoPorcentaje / 100);
+        }
+        
+        const subtotalConDescuento = subtotal - descuentoMonto;
+        const impuestos = subtotalConDescuento * 0.10;
+        const total = subtotalConDescuento + impuestos;
+        
+        document.getElementById('subtotal').textContent = "$" + subtotal.toFixed(2);
+        document.getElementById('descuento').textContent = "-$" + descuentoMonto.toFixed(2);
+        document.getElementById('impuestos').textContent = "$" + impuestos.toFixed(2);
+        document.getElementById('total').textContent = "$" + total.toFixed(2);
+        
+        if (descuentoMonto > 0) {
+            document.getElementById('linea-descuento').style.display = "flex";
+        } else {
+            document.getElementById('linea-descuento').style.display = "none";
+        }
+    }
+    
+    document.querySelectorAll('.cantidad-btn').forEach(boton => {
+        boton.onclick = function() {
+            const item = this.closest('.carrito-item');
+            const cantidadSpan = item.querySelector('.cantidad');
+            let valor = parseInt(cantidadSpan.textContent);
+            
+            if(this.classList.contains('mas')){
+                cantidadSpan.textContent = valor + 1;
+            } else if(this.classList.contains('menos') && valor > 1){
+                cantidadSpan.textContent = valor - 1;
+            }
+            
+            calcularTotal();
+        };
+    });
+    
+    document.querySelectorAll('.eliminar-btn').forEach(boton => {
+        boton.onclick = function() {
+            this.closest('.carrito-item').remove();
+            calcularTotal();
+        };
+    });
+    
+    document.getElementById('aplicar-cupon').onclick = function() {
+        const cupon = document.getElementById('cupon').value.toUpperCase();
+        const mensaje = document.getElementById('cupon-mensaje');
+        
+        if (cuponUsado) {
+            mensaje.textContent = "Ya usaste un cupón";
+            mensaje.style.color = "red";
+            return;
+        }
+        
+        if (!codigosValidos.includes(cupon)) {
+            mensaje.textContent = "Código no válido";
+            mensaje.style.color = "red";
+            return;
+        }
+        
+        descuentoPorcentaje = 10;
+        cuponUsado = true;
+        
+        calcularTotal();
+        
+        document.getElementById('cupon').disabled = true;
+        this.disabled = true;
+        this.textContent = "Aplicado";
+        this.style.backgroundColor = "#666";
+        
+        mensaje.textContent = "¡Cupón aplicado! 10% de descuento";
+        mensaje.style.color = "green";
+    };
+    
+    calcularTotal();
+</script>
+
+</body>
+</html>
