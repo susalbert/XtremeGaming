@@ -236,8 +236,6 @@ footer .container{
     align-items: flex-end;
 }
 
-/* ===== RESPONSIVE ===== */
-
 @media (min-width: 720px){
     header{
         position: fixed;
