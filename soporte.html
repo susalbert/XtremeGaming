@@ -3,182 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente - XtremeGaming</title>
     <link rel="icon" href="media/icono.png" type="image/x-icon">
+    <title>Soporte - XtremeGaming</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* AÑADE ESTO PRIMERO */
-        body {
-            padding-top: 80px; /* COMPENSA el header fixed */
-            margin: 0;
-            font-family: 'Fredoka', sans-serif;
-        }
-        
-        *{
+        *{ 
             box-sizing: border-box;
+            font-family: 'Fredoka', sans-serif !important;
         }
-
-        html{
-            scroll-behavior: smooth;
-        }
-
-        h1{ font-size: 3.5em; font-family: 'Fredoka', sans-serif;}
-        h2{ font-size: 2.7em; font-family: 'Fredoka', sans-serif;}
-        h3{ font-size: 2em; font-family: 'Fredoka', sans-serif;}
-        p{ font-size: 1.25em; font-family: 'Fredoka', sans-serif;}
-        ul{ list-style: none;}
-        li{ font-size: 1.25em; font-family: 'Fredoka', sans-serif;}
-
+        html{ scroll-behavior: smooth; }
+        body{ margin: 0; }
+        h1{ font-size: 3.5em; } h2{ font-size: 2.7em; } h3{ font-size: 2em; } p{ font-size: 1.25em; }
         button{
-            font-size: 1.5em;
-            font-weight: bold;
-            padding: 10px 30px;
-            border-radius: 10px;
-            border: 1px solid rgba(0,0,0,0.5);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            color: white;
-            background-color: orangered;
-            cursor: pointer;
+            font-size: 1em; font-weight: bold; padding: 10px 20px; border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.5); box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            color: white; background-color: orangered; cursor: pointer;
             font-family: 'Fredoka', sans-serif;
         }
+        button:hover{ background-color: rgba(255, 72, 0, 0.8); }
+        .container{ max-width: 1400px; margin: auto; }
 
-        button:hover{
-            background-color: rgba(255, 72, 0, 0.8);
-        }
+        header{ background-color: rgb(245,245,245); position: fixed; width: 100%; z-index: 1000; }
+        header .logo{ margin: 0; padding: 25px 30px; font-weight: bold; color: orangered; font-size: 1.6em; font-family: 'Fredoka', sans-serif; }
+        header .container{ display: flex; flex-direction: column; align-items: center; }
+        header nav{ display: flex; flex-direction: column; text-align: center; padding-bottom: 25px; }
+        header a{ padding: 5px 12px; text-decoration: none; font-weight: bold; color: black; font-family: 'Fredoka', sans-serif; }
+        header a:hover{ color: orangered; }
 
-        .container{
-            max-width: 1400px;
-            margin: auto;
-        }
-
-        .color-acento{ color:orangered; }
-
-        /* HEADER FIXED CORRECTO */
-        header{
-            background-color: rgb(245,245,245);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            width: 100%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        header .logo{
-            margin: 0;
-            padding: 25px 30px;
-            font-weight: bold;
-            color: orangered;
-            font-size: 1.6em;
-            font-family: 'Fredoka', sans-serif;
-        }
-
-        header .container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header nav{
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            padding-bottom: 25px;
-        }
-
-        header a{
-            padding: 5px 12px;
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-            font-family: 'Fredoka', sans-serif;
-        }
-
-        header a:hover{
-            color: orangered;
-        }
-
-        #proximamente-hero{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            flex-direction: column;
-            height: 60vh;
-            background-image: linear-gradient(
-                0deg,
-                rgba(0,0,0,0.7),
-                rgba(0,0,0,0.7)
-            ),
+        #soporte-hero{
+            display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column;
+            height: 40vh; background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
             url(media/room-with-lot-games-video-game-wall_875765-5370.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center center;
-            margin-top: 0; /* Asegúrate que sea 0 */
+            background-repeat: no-repeat; background-size: cover; background-position: center center;
+            padding-top: 100px;
         }
+        #soporte-hero h1{ color: white; margin-bottom: 20px; font-family: 'Fredoka', sans-serif; }
 
-        #proximamente-hero h1{
-            color: white;
-            margin-bottom: 20px;
-            font-family: 'Fredoka', sans-serif;
-        }
+        #soporte-contenido{ padding: 100px 12px; background-color: white; }
+        #soporte-contenido h2{ text-align: center; margin-bottom: 30px; color: #333; font-family: 'Fredoka', sans-serif; }
 
-        #proximamente-hero p{
-            font-family: 'Fredoka', sans-serif;
+        .form-card{
+            background-color: #f5f5f5; padding: 30px; margin: 30px auto; max-width: 800px; 
+            border-radius: 10px; border-left: 4px solid orangered; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
+        .form-group{ margin-bottom: 20px; }
+        label{ display: block; margin-bottom: 5px; font-weight: bold; font-family: 'Fredoka', sans-serif; }
+        input, select, textarea{
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;
+            font-family: 'Fredoka', sans-serif; font-size: 1em;
+        }
+        textarea{ height: 150px; resize: vertical; }
+        input::placeholder, textarea::placeholder { font-family: 'Fredoka', sans-serif; }
 
-        .icono-proximamente {
-            font-size: 4em;
-            margin-bottom: 20px;
+        .contacto-info{
+            display: flex; justify-content: center; gap: 40px; margin-top: 40px; text-align: center;
         }
+        .contacto-item h3{ color: orangered; margin-bottom: 10px; font-family: 'Fredoka', sans-serif; }
+        .contacto-item p { font-family: 'Fredoka', sans-serif; }
 
-        .mensaje-proximamente {
-            background-color: #f5f5f5;
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 800px;
-            margin: 50px auto;
-            border-left: 5px solid orangered;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        footer{
-            background-color: rgb(230,230,230);
-        }
-
-        footer p{
-            margin: 0;
-            padding: 12px;
-            color: rgb(100,100,100);
-            font-family: 'Fredoka', sans-serif;
-        }
-
-        footer .container{
-            height: 150px;
-            justify-content: center;
-            display: flex;
-            align-items: flex-end;
-        }
+        footer{ background-color: rgb(230,230,230); }
+        footer p{ margin: 0; padding: 12px; color: rgb(100,100,100); font-family: 'Fredoka', sans-serif; }
+        footer .container{ height: 150px; justify-content: center; display: flex; align-items: flex-end; }
 
         @media (min-width: 720px){
-            header .container{
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            header nav{
-                flex-direction: row;
-                padding-bottom: 0;
-                padding-right: 20px;
-            }
-
-            #proximamente-hero h1{
-                font-size: 4em;
-            }
+            header .container{ flex-direction: row; justify-content: space-between; }
+            header nav{ flex-direction: row; padding-bottom: 0; padding-right: 20px; }
+            #soporte-hero h1{ font-size: 4em; }
         }
-        
+        @media (max-width: 768px){
+            .contacto-info{ flex-direction: column; gap: 20px; }
+        }
+
         body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label, li, ul, ol, div {
             font-family: 'Fredoka', sans-serif !important;
         }
@@ -194,6 +89,7 @@
             <a href="index.html#VideojuegosMas">Videojuegos</a>
             <a href="tarjetas.html">Tarjetas Regalo</a>
             <a href="dispositivos.html">Dispositivos</a>
+            <a href="dlc.html">DLC</a>
             <a href="index.html#caracteristicas">Sobre Nosotros</a>
             <a href="perfil.html">Perfil</a>
             <a href="ajustes.html">Ajustes</a>
@@ -203,22 +99,60 @@
     </div>
 </header>
 
-<section id="proximamente-hero">
-    <div class="icono-proximamente">🚧</div>
-    <h1>Próximamente</h1>
-    <p style="color: white; font-size: 1.5em;">Esta página está en construcción</p>
+<section id="soporte-hero">
+    <h1>Soporte</h1>
+    <p style="color: white; font-size: 1.5em;">¿Necesitas ayuda? Estamos aquí para ti</p>
 </section>
 
-<section style="padding: 100px 12px; background-color: white;">
+<section id="soporte-contenido">
     <div class="container">
-        <div class="mensaje-proximamente">
-            <h2>¡Estamos trabajando en esto!</h2>
-            <p>Esta sección de nuestra tienda estará disponible muy pronto. Estamos preparando algo increíble para ti.</p>
-            <p>Mientras tanto, puedes explorar nuestras otras secciones o contactarnos si necesitas ayuda.</p>
+        <h2>Contacta con Nosotros</h2>
+        
+        <div class="form-card">
+            <form id="form-soporte">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="tu@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="asunto">Tipo de consulta:</label>
+                    <select id="asunto" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="problema-compra">Problema con una compra</option>
+                        <option value="error-cuenta">Error en mi cuenta</option>
+                        <option value="problema-juego">Problema con un juego</option>
+                        <option value="sugerencia">Sugerencia</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" placeholder="Describe tu problema o consulta..." required></textarea>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" style="font-size: 1.2em; padding: 15px 40px;">Enviar Mensaje</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="contacto-info">
+            <div class="contacto-item">
+                <h3>Email</h3>
+                <p>soporte@xtremegaming.com</p>
+                <p>Respuesta en 24h</p>
+            </div>
             
-            <div style="margin-top: 40px;">
-                <button onclick="location.href='index.html'">Volver al Inicio</button>
-                <button onclick="location.href='sugerencias.html'" style="margin-left: 20px; background-color: #666;">Enviar Sugerencia</button>
+            <div class="contacto-item">
+                <h3>Teléfono</h3>
+                <p>+0 000 000 0000</p>
+                <p>Disponible de Lunes a Viernes de 8:00 a 22:00</p>
             </div>
         </div>
     </div>
@@ -229,6 +163,14 @@
         <p>&copy; XtremeGaming 2026 - Soporte</p>
     </div>
 </footer>
+
+<script>
+    document.getElementById('form-soporte').onsubmit = function(e) {
+        e.preventDefault();
+        alert('¡Gracias por contactarnos! Te responderemos pronto.');
+        this.reset();
+    };
+</script>
 
 </body>
 </html>
